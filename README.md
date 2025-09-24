@@ -20,8 +20,7 @@ If you find our work useful for your research, please cite:
 
 
 # Website License
-<title>Find your Needle: Small Object Image Retrieval via Multi-Object Attention Optimization</title>
-
+Find your Needle: Small Object Image Retrieval via Multi-Object Attention Optimization
 
 
 <meta property="og:title" content="Find your Needle: Small Object Image Retrieval via Multi-Object Attention Optimization" />
