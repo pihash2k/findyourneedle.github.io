@@ -241,24 +241,22 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const instances = bulmaCarousel.attach('#figure-carousel', {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    navigation: false,   // hide built-in arrows (prevents overlap)
-    pagination: false,   // hide dots (optional)
-    loop: false,         // don't wrap at ends
-    infinite: false,     // don't clone slides
-    autoplay: false,     // no auto movement
-    pauseOnHover: true
-  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const instances = bulmaCarousel.attach('#figure-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      autoplay: false,     
+      navigation: false, 
+      pagination: false,  
+      loop: true
+    });
 
-  const carousel = instances && instances[0];
-  if (carousel) {
-    document.getElementById('prevBtn').addEventListener('click', () => carousel.previous());
-    document.getElementById('nextBtn').addEventListener('click', () => carousel.next());
-  }
-});
+    const carousel = instances && instances[0];
+    if (carousel) {
+      document.getElementById('prevBtn').addEventListener('click', () => carousel.prev());
+      document.getElementById('nextBtn').addEventListener('click', () => carousel.next());
+    }
+  });
 </script>
 
 
