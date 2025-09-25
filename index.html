@@ -188,7 +188,7 @@
 <section class="section">
   <div class="container is-max-desktop">
     <div class="has-text-centered">
-      <div id="figure-carousel" class="carousel" data-autoplay="false">
+      <div id="figure-carousel" class="carousel">
         <!-- Slide 1 -->
         <div class="item-1">
           <figure>
@@ -214,11 +214,6 @@
       (with respect to the image dimensions) displayed above its bounding box.
     </p>
 
-      <!-- Manual controls -->
-      <div class="buttons is-centered" style="margin-top:0.8rem;">
-        <button id="prevBtn" class="button is-small is-light">◀ Prev</button>
-        <button id="nextBtn" class="button is-small is-light">Next ▶</button>
-      </div>
     </div>
   </div>
 </section>
@@ -238,20 +233,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const instances = bulmaCarousel.attach('#figure-carousel', {
+    bulmaCarousel.attach('#figure-carousel', {
       slidesToScroll: 1,
       slidesToShow: 1,
-      autoplay: false,     
-      navigation: false, 
+      navigation: true,   
       pagination: false,  
+      autoplay: false,    
       loop: true
     });
-
-    const carousel = instances && instances[0];
-    if (carousel) {
-      document.getElementById('prevBtn').addEventListener('click', () => carousel.prev());
-      document.getElementById('nextBtn').addEventListener('click', () => carousel.next());
-    }
   });
 </script>
 
