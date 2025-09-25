@@ -241,34 +241,26 @@
 </section>
 
 <script>
-  // Initialize the carousel and wire up buttons
-  document.addEventListener('DOMContentLoaded', function () {
-    // Create/attach carousel (returns an array of instances)
-    const instances = bulmaCarousel.attach('#figure-carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      navigation: true,   // show left/right arrows
-      pagination: true,   // show dots
-      loop: true,
-      autoplay: false,
-      pauseOnHover: true
-    });
-
-    const carousel = instances && instances[0];
-    if (carousel) {
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      prevBtn && prevBtn.addEventListener('click', () => carousel.prev());
-      nextBtn && nextBtn.addEventListener('click', () => carousel.next());
-
-      // Optional: keyboard arrows
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') carousel.prev();
-        if (e.key === 'ArrowRight') carousel.next();
-      });
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  const instances = bulmaCarousel.attach('#figure-carousel', {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    navigation: false,   // hide built-in arrows (prevents overlap)
+    pagination: false,   // hide dots (optional)
+    loop: false,         // don't wrap at ends
+    infinite: false,     // don't clone slides
+    autoplay: false,     // no auto movement
+    pauseOnHover: true
   });
+
+  const carousel = instances && instances[0];
+  if (carousel) {
+    document.getElementById('prevBtn').addEventListener('click', () => carousel.previous());
+    document.getElementById('nextBtn').addEventListener('click', () => carousel.next());
+  }
+});
 </script>
+
 
 
 <footer class="footer">
