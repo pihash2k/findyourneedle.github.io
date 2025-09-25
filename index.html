@@ -41,6 +41,8 @@
 </head>
 <body>
 
+
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -182,6 +184,50 @@
   </div>
 </section>
 
+<!-- Image Gallery (Carousel) -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <div id="figure-carousel" class="carousel" data-autoplay="false">
+        <!-- Slide 1 -->
+        <div class="item-1">
+          <figure>
+            <img src="./static/images/obj_sizes_1.png" alt="Figure 1" style="max-width:100%;height:auto;">
+            <figcaption style="font-size:0.9em; font-style:italic; margin-top:0.6em;">
+              <strong>Fig. 1.</strong> Caption for image 1.
+            </figcaption>
+          </figure>
+        </div>
+        <!-- Slide 2 -->
+        <div class="item-2">
+          <figure>
+            <img src="./static/images/obj_sizes_2.png" alt="Figure 2" style="max-width:100%;height:auto;">
+            <figcaption style="font-size:0.9em; font-style:italic; margin-top:0.6em;">
+              <strong>Fig. 2.</strong> Caption for image 2.
+            </figcaption>
+          </figure>
+        </div>
+        <!-- Slide 3 -->
+        <div class="item-3">
+          <figure>
+            <img src="./static/images/obj_sizes_3.png" alt="Figure 3" style="max-width:100%;height:auto;">
+            <figcaption style="font-size:0.9em; font-style:italic; margin-top:0.6em;">
+              <strong>Fig. 3.</strong> Caption for image 3.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Manual controls -->
+      <div class="buttons is-centered" style="margin-top:0.8rem;">
+        <button id="prevBtn" class="button is-small is-light">◀ Prev</button>
+        <button id="nextBtn" class="button is-small is-light">Next ▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
@@ -193,6 +239,36 @@
 }</code></pre>
   </div>
 </section>
+
+<script>
+  // Initialize the carousel and wire up buttons
+  document.addEventListener('DOMContentLoaded', function () {
+    // Create/attach carousel (returns an array of instances)
+    const instances = bulmaCarousel.attach('#figure-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      navigation: true,   // show left/right arrows
+      pagination: true,   // show dots
+      loop: true,
+      autoplay: false,
+      pauseOnHover: true
+    });
+
+    const carousel = instances && instances[0];
+    if (carousel) {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      prevBtn && prevBtn.addEventListener('click', () => carousel.prev());
+      nextBtn && nextBtn.addEventListener('click', () => carousel.next());
+
+      // Optional: keyboard arrows
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') carousel.prev();
+        if (e.key === 'ArrowRight') carousel.next();
+      });
+    }
+  });
+</script>
 
 
 <footer class="footer">
