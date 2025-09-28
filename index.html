@@ -38,6 +38,78 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+<style>
+  /* Styles for the auto-rotating results section */
+  .results-slideshow {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 400px; /* Adjust based on your images */
+  }
+
+  .results-slideshow img {
+    width: 100%;
+    height: auto;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .results-slideshow img.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Optional: Add indicators */
+  .slideshow-indicators {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .slideshow-indicators span {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .slideshow-indicators span.active {
+    background-color: #717171;
+  }
+
+  /* Optional: Manual navigation buttons */
+  .slideshow-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    border: none;
+    z-index: 1;
+  }
+
+  .slideshow-nav:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .slideshow-nav.prev {
+    left: 10px;
+  }
+
+  .slideshow-nav.next {
+    right: 10px;
+  }
+</style>
+
 </head>
 <body>
 
@@ -230,6 +302,40 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
   </div>
 </section>
 
+<!-- Results Section with Auto-Rotating Images -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <h2 class="title is-3">Retrieval Results</h2>
+      
+      <div class="results-slideshow">
+        <!-- Navigation buttons (optional) -->
+        <button class="slideshow-nav prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slideshow-nav next" onclick="changeSlide(1)">&#10095;</button>
+        
+        <!-- Add your result images here -->
+        <!-- Replace these src paths with your actual image paths -->
+        <img src="./static/images/top1_no_bb_1.png" class="active" alt="Result 1">
+        <img src="./static/images/top1_with_bb_1.png" alt="Result 2">
+      </div>
+      
+      <!-- Indicators -->
+      <div class="slideshow-indicators">
+        <span class="active" onclick="currentSlide(1)"></span>
+        <span onclick="currentSlide(2)"></span>
+        <span onclick="currentSlide(3)"></span>
+        <span onclick="currentSlide(4)"></span>
+        <span onclick="currentSlide(5)"></span>
+      </div>
+      
+      <p class="has-text-centered" style="font-size:0.9em; font-style:italic; margin-top:0.8rem;">
+        Qualitative comparison of retrieval results across different methods. Each row shows a query image 
+        followed by the top retrieved results using our MaO method compared to baseline approaches.
+      </p>
+    </div>
+  </div>
+</section>
+
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -254,6 +360,63 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
       loop: true
     });
   });
+
+
+  // Auto-rotating slideshow functionality
+let slideIndex = 1;
+let slideTimer;
+
+function showSlide(n) {
+  let slides = document.querySelectorAll('.results-slideshow img');
+  let indicators = document.querySelectorAll('.slideshow-indicators span');
+  
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  
+  // Hide all slides
+  slides.forEach(slide => {
+    slide.classList.remove('active');
+  });
+  
+  // Remove active class from all indicators
+  indicators.forEach(indicator => {
+    indicator.classList.remove('active');
+  });
+  
+  // Show current slide and indicator
+  if (slides[slideIndex - 1]) {
+    slides[slideIndex - 1].classList.add('active');
+  }
+  if (indicators[slideIndex - 1]) {
+    indicators[slideIndex - 1].classList.add('active');
+  }
+}
+
+function changeSlide(n) {
+  clearTimeout(slideTimer); // Reset the timer when manually changing
+  showSlide(slideIndex += n);
+  autoSlide(); // Restart auto-rotation
+}
+
+function currentSlide(n) {
+  clearTimeout(slideTimer); // Reset the timer when manually changing
+  showSlide(slideIndex = n);
+  autoSlide(); // Restart auto-rotation
+}
+
+function autoSlide() {
+  slideTimer = setTimeout(() => {
+    slideIndex++;
+    showSlide(slideIndex);
+    autoSlide(); // Continue auto-rotation
+  }, 5000); // Change image every 5 seconds (adjust as needed)
+}
+
+// Start the auto-rotation when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  autoSlide();
+});
+
 </script>
 
 
