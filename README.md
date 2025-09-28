@@ -2,7 +2,7 @@
 
 This is the repository that contains source code for the [Find your Needle website](https://pihash2k.github.io/findyourneedle.github.io/).
 
-📂 [Dataset Instructions](Dataset/README.md)
+📂 [Dataset Instructions](https://github.com/pihash2k/VoxDet-SoIR)
 
 If you find our work useful for your research, please cite:
 
