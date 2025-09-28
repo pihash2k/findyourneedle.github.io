@@ -402,22 +402,15 @@ function showSlide(n) {
 function changeSlide(n) {
   clearTimeout(slideTimer); // Reset the timer when manually changing
   showSlide(slideIndex += n);
-  autoSlide(); // Restart auto-rotation
+  // autoSlide(); // Restart auto-rotation
 }
 
 function currentSlide(n) {
   clearTimeout(slideTimer); // Reset the timer when manually changing
   showSlide(slideIndex = n);
-  autoSlide(); // Restart auto-rotation
+  // autoSlide(); // Restart auto-rotation
 }
 
-function autoSlide() {
-  slideTimer = setTimeout(() => {
-    slideIndex++;
-    showSlide(slideIndex);
-    autoSlide(); // Continue auto-rotation
-  }, 10000); // Change image every 5 seconds (adjust as needed)
-}
 
 // Start the auto-rotation when page loads
 document.addEventListener('DOMContentLoaded', function() {
