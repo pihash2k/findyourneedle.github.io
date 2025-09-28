@@ -328,10 +328,14 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
         <span onclick="currentSlide(5)"></span>
       </div>
       
-      <p class="has-text-centered" style="font-size:0.9em; font-style:italic; margin-top:0.8rem;">
-        Qualitative comparison of retrieval results across different methods. Each row shows a query image 
-        followed by the top retrieved results using our MaO method compared to baseline approaches.
-      </p>
+    <p class="has-text-centered" style="font-size:0.9em; font-style:italic; margin-top:0.8rem;">
+      <strong>Can you find the needle?</strong> Each example shows a query image on the left with the target "needle" (small object) 
+      marked in red, alongside four candidate "haystacks" on the right. One of these four images contains the exact same instance
+      as retrieved by our MaO method (top-1 result). Can you spot which one? 
+      This interactive challenge demonstrates why finding these small instances in cluttered, real-world scenes,
+      is such a difficult task, objects appear at different scales, viewpoints, and contexts, 
+      truly making it a search for a needle in a haystack.
+    </p>
     </div>
   </div>
 </section>
@@ -409,7 +413,7 @@ function autoSlide() {
     slideIndex++;
     showSlide(slideIndex);
     autoSlide(); // Continue auto-rotation
-  }, 5000); // Change image every 5 seconds (adjust as needed)
+  }, 10000); // Change image every 5 seconds (adjust as needed)
 }
 
 // Start the auto-rotation when page loads
