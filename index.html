@@ -201,6 +201,56 @@
   </div>
 </section>
 
+<!-- Results Section with Auto-Rotating Images -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <h2 class="title is-3">Top-1 Retrieval Results</h2>
+      <h2 class="title is-4">Can you find the object?</h2>
+      
+      <div class="results-slideshow">
+        <!-- Navigation buttons (optional) -->
+        <button class="slideshow-nav prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slideshow-nav next" onclick="changeSlide(1)">&#10095;</button>
+        
+        <!-- Add your result images here -->
+        <!-- Replace these src paths with your actual image paths -->
+        <img src="./static/images/top1_no_bb_5.png" class="active" alt="Result 1">
+        <img src="./static/images/top1_with_bb_5.png" alt="Result 1">
+        <img src="./static/images/top1_no_bb_2.png" alt="Result 2">
+        <img src="./static/images/top1_with_bb_2.png" alt="Result 2">
+        <img src="./static/images/top1_no_bb_1.png" alt="Result 3">
+        <img src="./static/images/top1_with_bb_1.png" alt="Result 3">
+        <img src="./static/images/top1_no_bb_3.png" alt="Result 4">
+        <img src="./static/images/top1_with_bb_3.png" alt="Result 4">
+        <img src="./static/images/top1_no_bb_4.png" alt="Result 5">
+        <img src="./static/images/top1_with_bb_4.png" alt="Result 5">
+      </div>
+      
+      <!-- Indicators -->
+      <div class="slideshow-indicators">
+        <span class="active" onclick="currentSlide(1)"></span>
+        <span onclick="currentSlide(2)"></span>
+        <span onclick="currentSlide(3)"></span>
+        <span onclick="currentSlide(4)"></span>
+        <span onclick="currentSlide(5)"></span>
+      </div>
+      
+    <p style="font-size:0.9em; font-style:italic; margin-top:0.8rem; text-align: justify;">
+      <strong>Can you find the object?</strong> Each example shows a query image on 
+      the left with the target instance marked in red, alongside four candidate gallery 
+      images on the right. One of these four images contains the exact same instance as 
+      retrieved by our MaO method (top-1 result from a gallery of 1,580 images). 
+      Can you spot which one? This interactive challenge demonstrates why finding 
+      these small instances in cluttered, real-world scenes is such a difficult 
+      task—objects appear at different scales, viewpoints, and contexts, 
+      truly making it a search for a needle in a haystack.
+    </p>
+    </div>
+  </div>
+</section>
+
+
 <!-- Figure 1 -->
 <section class="section">
   <div class="container is-max-desktop content" style="text-align: center;">
@@ -298,53 +348,6 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
       (with respect to the image dimensions) displayed above its bounding box.
     </p>
 
-    </div>
-  </div>
-</section>
-
-<!-- Results Section with Auto-Rotating Images -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="has-text-centered">
-      <h2 class="title is-3">Top-1 Retrieval Results</h2>
-      <h2 class="title is-4">Can you find the needle?</h2>
-      
-      <div class="results-slideshow">
-        <!-- Navigation buttons (optional) -->
-        <button class="slideshow-nav prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="slideshow-nav next" onclick="changeSlide(1)">&#10095;</button>
-        
-        <!-- Add your result images here -->
-        <!-- Replace these src paths with your actual image paths -->
-        <img src="./static/images/top1_no_bb_5.png" class="active" alt="Result 1">
-        <img src="./static/images/top1_with_bb_5.png" alt="Result 1">
-        <img src="./static/images/top1_no_bb_2.png" alt="Result 2">
-        <img src="./static/images/top1_with_bb_2.png" alt="Result 2">
-        <img src="./static/images/top1_no_bb_1.png" alt="Result 3">
-        <img src="./static/images/top1_with_bb_1.png" alt="Result 3">
-        <img src="./static/images/top1_no_bb_3.png" alt="Result 4">
-        <img src="./static/images/top1_with_bb_3.png" alt="Result 4">
-        <img src="./static/images/top1_no_bb_4.png" alt="Result 5">
-        <img src="./static/images/top1_with_bb_4.png" alt="Result 5">
-      </div>
-      
-      <!-- Indicators -->
-      <div class="slideshow-indicators">
-        <span class="active" onclick="currentSlide(1)"></span>
-        <span onclick="currentSlide(2)"></span>
-        <span onclick="currentSlide(3)"></span>
-        <span onclick="currentSlide(4)"></span>
-        <span onclick="currentSlide(5)"></span>
-      </div>
-      
-    <p style="font-size:0.9em; font-style:italic; margin-top:0.8rem; text-align: justify;">
-      <strong>Can you find the needle?</strong> Each example shows a query image on the left with the target instance 
-      marked in red, alongside four candidate gallery images on the right. One of these four images contains the exact same instance
-      as retrieved by our MaO method (top-1 result). Can you spot which one? 
-      This interactive challenge demonstrates why finding these small instances in cluttered, real-world scenes,
-      is such a difficult task, objects appear at different scales, viewpoints, and contexts, 
-      truly making it a search for a needle in a haystack.
-    </p>
     </div>
   </div>
 </section>
