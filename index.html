@@ -476,9 +476,8 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
     });
   });
   
-  // Auto-rotating slideshow functionality
+  // Manual slideshow functionality (no auto-rotation)
   let slideIndex = 1;
-  let slideTimer;
   
   function showSlide(n) {
     // Updated to work with slide-wrapper instead of img
@@ -513,32 +512,18 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
   }
   
   function changeSlide(n) {
-    clearTimeout(slideTimer); // Reset the timer when manually changing
     showSlide(slideIndex += n);
-    autoSlide(); // Restart auto-rotation
   }
   
   function currentSlide(n) {
-    clearTimeout(slideTimer); // Reset the timer when manually changing
     // Since we have 2 images per example (with and without bounding box),
     // we need to adjust the index
     showSlide(slideIndex = (n * 2) - 1);
-    autoSlide(); // Restart auto-rotation
   }
   
-  function autoSlide() {
-    clearTimeout(slideTimer);
-    slideTimer = setTimeout(function() {
-      slideIndex++;
-      showSlide(slideIndex);
-      autoSlide(); // Continue auto-rotation
-    }, 3000); // Change slide every 3 seconds
-  }
-  
-  // Start the auto-rotation when page loads
+  // Initialize the first slide when page loads
   document.addEventListener('DOMContentLoaded', function() {
     showSlide(slideIndex); // Show first slide
-    autoSlide(); // Start auto-rotation
   });
 </script>
 
