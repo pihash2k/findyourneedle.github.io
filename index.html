@@ -115,31 +115,35 @@
     background-color: #717171;
   }
   
-  /* Optional: Manual navigation buttons */
-  .slideshow-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
+  /* Navigation button below slideshow */
+  .slideshow-navigation {
+    text-align: center;
+    margin: 20px 0 10px 0;
+  }
+  
+  .navigation-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
     border: none;
-    z-index: 1;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    min-width: 140px;
   }
   
-  .slideshow-nav:hover {
-    background-color: rgba(0,0,0,0.8);
+  .navigation-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
   }
   
-  .slideshow-nav.prev {
-    left: 10px;
-  }
-  
-  .slideshow-nav.next {
-    right: 10px;
+  .navigation-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
   }
 
   .navigation-hint-modern {
@@ -201,7 +205,7 @@
               <a href="https://arxiv.org/search/cs?searchtype=author&query=Tzachor,+I" style="font-weight: bold">Issar Tzachor</a><sup>*1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://github.com/dvirsamuel">Dvir Samuel</a><sup>1,3</sup>,
+              <a href="https://dvirsamuel.github.io/">Dvir Samuel</a><sup>1,3</sup>,
             </span>
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=Mf06N8kAAAAJ&hl=en">Nir Darshan</a><sup>1</sup>,
@@ -258,6 +262,29 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We address the challenge of Small Object Image Retrieval (SoIR), where the goal is to retrieve images containing a specific small object in a cluttered scene. The key challenge in this setting is constructing a single image descriptor, for scalable and efficient search, that effectively represents all objects in the image.
+          </p>
+          <p>
+            In this paper, we first analyze the limitations of existing methods on this challenging task and then introduce new benchmarks to support SoIR evaluation. Next, we introduce Multi-object Attention Optimization (MaO), a novel retrieval framework which incorporates a dedicated multi-object pre-training phase. This is followed by a refinement process that leverages attention-based feature extraction with object masks, integrating them into a single unified image descriptor.
+          </p>
+          <p>
+            Our MaO approach significantly outperforms existing retrieval methods and strong baselines, achieving notable improvements in both zero-shot and lightweight multi-object fine-tuning. We hope this work will lay the groundwork and inspire further research to enhance retrieval performance for this highly practical task.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
 <!-- Results Section with Auto-Rotating Images -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -266,10 +293,6 @@
       <h2 class="title is-4">Can you find the object?</h2>
       
       <div class="results-slideshow">
-        <!-- Navigation buttons (optional) -->
-        <button class="slideshow-nav prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="slideshow-nav next" onclick="changeSlide(1)">&#10095;</button>
-        
         <!-- Wrapper for each slide with captions -->
         <div class="slide-wrapper active">
           <img src="./static/images/top1_no_bb_5.png" alt="Result 1">
@@ -352,6 +375,11 @@
         </div>
       </div>
       
+      <!-- Navigation button -->
+      <div class="slideshow-navigation">
+        <button id="nav-button" class="navigation-button" onclick="changeSlide(1)">Reveal object</button>
+      </div>
+      
       <!-- Indicators -->
       <div class="slideshow-indicators">
         <span class="active" onclick="currentSlide(1)"></span>
@@ -411,29 +439,6 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
   </div>
 </section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We address the challenge of Small Object Image Retrieval (SoIR), where the goal is to retrieve images containing a specific small object in a cluttered scene. The key challenge in this setting is constructing a single image descriptor, for scalable and efficient search, that effectively represents all objects in the image.
-          </p>
-          <p>
-            In this paper, we first analyze the limitations of existing methods on this challenging task and then introduce new benchmarks to support SoIR evaluation. Next, we introduce Multi-object Attention Optimization (MaO), a novel retrieval framework which incorporates a dedicated multi-object pre-training phase. This is followed by a refinement process that leverages attention-based feature extraction with object masks, integrating them into a single unified image descriptor.
-          </p>
-          <p>
-            Our MaO approach significantly outperforms existing retrieval methods and strong baselines, achieving notable improvements in both zero-shot and lightweight multi-object fine-tuning. We hope this work will lay the groundwork and inspire further research to enhance retrieval performance for this highly practical task.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
 
 <!-- Image Gallery (Carousel) -->
 <section class="section">
@@ -544,17 +549,34 @@ resolution. MaO consistently outperforms existing methods, showing robustness ac
   
   function changeSlide(n) {
     showSlide(slideIndex += n);
+    updateNavigationButton();
+  }
+  
+  function updateNavigationButton() {
+    const button = document.getElementById('nav-button');
+    if (!button) return;
+    
+    // Check if current slide is odd (no bounding box) or even (with bounding box)
+    const isOddSlide = slideIndex % 2 === 1;
+    
+    if (isOddSlide) {
+      button.textContent = 'Reveal object';
+    } else {
+      button.textContent = 'Next panel';
+    }
   }
   
   function currentSlide(n) {
     // Since we have 2 images per example (with and without bounding box),
     // we need to adjust the index
     showSlide(slideIndex = (n * 2) - 1);
+    updateNavigationButton();
   }
   
   // Initialize the first slide when page loads
   document.addEventListener('DOMContentLoaded', function() {
     showSlide(slideIndex); // Show first slide
+    updateNavigationButton(); // Set initial button text
   });
 </script>
 
